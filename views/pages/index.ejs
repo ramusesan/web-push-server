@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearson admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Arvo', serif;
+        }
+
+        body {
+            background: #fff;
+            margin: 0;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        h1 {
+            margin: auto;
+            text-align: center;
+        }
+
+        form {
+            width: 30%;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="submit"] {
+            text-align: center;
+            background: #0170b4fa;
+            color: #fff;
+            align-items: center;
+            height: 30px;
+            outline: none;
+            border: none;
+            box-shadow: 2px 3px 10px #000;
+            width: 200px;
+            margin: 2rem auto auto auto;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        label {
+            vertical-align: middle;
+        }
+
+        #imageUrl {
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            height: 20px;
+        }
+
+        textarea,
+        input {
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        #types-container,
+        #users-container {
+            margin: 10px;
+        }
+
+        header {
+            display: flex;
+            height: 60px;
+            background: #9393931f;
+        }
+
+        .asset_type {
+            font-weight: normal;
+            top: -6px;
+            position: relative;
+        }
+
+        #student-box{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="../images/logo.png" alt="logo" />
+    </header>
+
+    <form action="/assignment/add" method="post">
+        <label for="title">Title</label> <input type="text" id="title" name="title" placeholder="Enter title"
+            value="Revision Guide" />
+        <label for="desc">Description</label> <textarea id="desc" rows="4" cols="50" name="body"
+            placeholder="Enter body"></textarea>
+
+
+
+        <label for="type">Type</label>
+        <div id="types-container">
+            <% if (assets && assets.length> 0) { %>
+                <% assets.forEach(function(asset) { %>
+
+                    <input type="radio" id=" <%=asset.type %>" name="asset_type" value="<%=asset.type %>">
+                    </input>
+                    <label class="asset_type" for=" <%=asset.type %>">
+                        <%=asset.type %>
+                    </label><br>
+
+                    <% }); %>
+                        <% } %>
+        </div>
+
+        <label for="type">Asset URL</label>
+        <input type="text" id="assetUrl" name="assetUrl" value="https://picsum.photos/200/300"
+            placeholder="Enter image URL" />
+        <label for="type" id="student-box">Students</label>
+        <div id="users-container">
+            <% if (users && users.length> 0) { %>
+                <% users.forEach(function(user) { %>
+                    <input type="checkbox" checked="true">
+                    <%=user.name %> </input>
+                        <% }); %>
+                            <% } %>
+        </div>
+
+        <input type="submit" value="Create Assignment"></input>
+    </form>
+</body>
+
+</html>
