@@ -9,7 +9,7 @@ const assignmentsRouter = require("./routes/assignments");
 
 const app = express();
 
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
