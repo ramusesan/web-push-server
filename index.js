@@ -16,6 +16,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.use((req, res,next)=>{
+  res.setHeader('Access-control-Allow-Origin', '*'); // or you can add domains 'codeopen.com, jsfiddle.com' etc
+  res.setHeader('Access-control-Allow-Methods', 'GET, POST,PUT,PATCH,DELETE');
+  res.setHeader('Access-control-Allow-Headers', 'Content-type, Autherization');
+  next();
+})
+
 app.use("/assignment", assignmentsRouter);
 
 app.use("/fcm", fcmRouter);
